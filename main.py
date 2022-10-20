@@ -92,24 +92,24 @@ film_runtime = []
 film_certificate = []
 while films > 0:
     for film_element in film_elements:
-        film_id.append(f'{loops}')
+        film_id.append(loops)
         title_element = film_element.find('a')
-        film_title.append(f'{title_element.text.strip()}')
+        film_title.append(title_element.text.strip())
         year_element = film_element.find(class_='lister-item-year text-muted unbold')
         film_year.append(re.findall('\d+', year_element.text.strip()))
         genre_element = film_element.find(class_='genre')
-        film_genre.append(f'{genre_element.text.strip()}')
+        film_genre.append(genre_element.text.strip())
         rating_element = film_element.find('strong')
-        film_rating.append(f'{rating_element.text.strip()}')
+        film_rating.append(rating_element.text.strip())
         try:
             runtime_element = film_element.find(class_='runtime')
-            film_runtime.append(f'{runtime_element.text.strip()}')
+            film_runtime.append(runtime_element.text.strip())
             pass
         except AttributeError:
             film_runtime.append('N/a')
         try:
             age_element = film_element.find(class_='certificate')
-            film_certificate.append(f'{age_element.text.strip()}')
+            film_certificate.append(age_element.text.strip())
             pass
         except AttributeError:
             film_certificate.append('N/a')
