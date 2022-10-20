@@ -6,7 +6,7 @@ by popularity, as determined by IMDb's algorithms.
 The script amends IMDb's search URL to input custom values for the range of years and
 ratings searched, and then scrapes data from the generated page. This data includes 
 each film's title, year, genre, rating, runtime, and age certificate. If no suitable
-matches are found, 'No result found' is printed.
+matches are found, 'No results found' is printed.
 
 A film_id is uniquely attached to each film, and the results are presented in the form of
 a printed pandas DataFrame (with index removed, as we have already specified a film_id).
