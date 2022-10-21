@@ -122,14 +122,18 @@ while films > 0:
 
     break
 
+#data cleaning
 film_years = []
 for i in film_year:
-    for j in i:
-        j.replace('[', '')
-        j.replace(']', '')
-        film_years.append(int(j))
+    film_year_new = re.sub('(\(|\)|I| )', '', i)
+    film_years.append(film_year_new)
 
-features = {'film_id':film_id, 'title':film_title, 'year':film_years, 'genre':film_genre, 'rating':film_rating, 'runtime':film_runtime, 'certificate':film_certificate}
+run_time = []
+for i in film_runtime:
+    run_time_new = re.sub('(min| )', '', i)
+    run_time.append(run_time_new)
+
+features = {'film_id':film_id, 'title':film_title, 'year':film_years, 'genre':film_genre, 'rating':film_rating, 'runtime':run_time, 'certificate':film_certificate}
 films = pd.DataFrame(features, columns = ['film_id', 'title', 'year','genre', 'rating', 'runtime', 'certificate'])
 
 print(films.to_string(index=False))
@@ -144,3 +148,4 @@ films.to_sql('films', conn, if_exists='replace', index=False)
 conn.commit()
 conn.close()
 
+#changed file 2
