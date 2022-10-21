@@ -62,6 +62,7 @@ while True:
     else:
         print('Please enter a number between 1.0 and 10.0')
 
+
 URL = f'https://www.imdb.com/search/title/?title=&title_type=feature&release_date={startyear}-01-01,{endyear}-12-31&user_rating={minrat},{maxrat}&num_votes=1000,&languages=en'
 
 page = requests.get(URL)
@@ -96,7 +97,7 @@ while films > 0:
         title_element = film_element.find('a')
         film_title.append(title_element.text.strip())
         year_element = film_element.find(class_='lister-item-year text-muted unbold')
-        film_year.append(re.findall('\d+', year_element.text.strip()))
+        film_year.append(re.findall('\((\d+)\)', year_element.text.strip()))
         genre_element = film_element.find(class_='genre')
         film_genre.append(genre_element.text.strip())
         rating_element = film_element.find('strong')
