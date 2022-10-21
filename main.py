@@ -100,7 +100,7 @@ while films > 0:
         genre_element = film_element.find(class_='genre')
         film_genre.append(genre_element.text.strip())
         rating_element = film_element.find('strong')
-        film_rating.append(rating_element.text.strip())
+        film_rating.append(float(rating_element.text.strip()))
         try:
             runtime_element = film_element.find(class_='runtime')
             film_runtime.append(runtime_element.text.strip())
@@ -125,7 +125,7 @@ for i in film_year:
     for j in i:
         j.replace('[', '')
         j.replace(']', '')
-        film_years.append(j)
+        film_years.append(int(j))
 
 features = {'film_id':film_id, 'title':film_title, 'year':film_years, 'genre':film_genre, 'rating':film_rating, 'runtime':film_runtime, 'certificate':film_certificate}
 films = pd.DataFrame(features, columns = ['film_id', 'title', 'year','genre', 'rating', 'runtime', 'certificate'])
@@ -134,8 +134,7 @@ print(films.to_string(index=False))
 
 conn = sqlite3.connect('films.db')
 c = conn.cursor()
-
-c.execute('CREATE TABLE IF NOT EXISTS films (film_id number, title text, year number, genre text, rating text, runtime text, certificate text)')
+c.execute('CREATE TABLE IF NOT EXISTS films (film_id int, title text, year int, genre text, rating float, runtime text, certificate text)')
 conn.commit()
 
 films.to_sql('films', conn, if_exists='replace', index=False)
