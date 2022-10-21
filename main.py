@@ -134,6 +134,7 @@ print(films.to_string(index=False))
 
 conn = sqlite3.connect('films.db')
 c = conn.cursor()
+
 c.execute('CREATE TABLE IF NOT EXISTS films (film_id int, title text, year int, genre text, rating float, runtime text, certificate text)')
 conn.commit()
 
