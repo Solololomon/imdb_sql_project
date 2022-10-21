@@ -91,6 +91,7 @@ film_genre = []
 film_rating = []
 film_runtime = []
 film_certificate = []
+
 while films > 0:
     for film_element in film_elements:
         film_id.append(loops)
